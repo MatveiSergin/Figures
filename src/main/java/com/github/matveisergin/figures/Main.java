@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static main.java.com.github.matveisergin.figures.constants.Consts.*;
+
 public class Main {
     public static Boolean inArray(String str, String[] array) {
         for (String element : array) {
@@ -24,16 +26,23 @@ public class Main {
     public static List<Point> getPoints(Scanner scanner, String command) {
         List<Point> points = new ArrayList<>();
         String inputData = scanner.nextLine();
-        while (!inputData.equals("STOP_INPUT")) {
-            String[] coordinates = inputData.split(" ");
-            if (coordinates.length == Consts.NUMBER_OF_POINTS_TWO && inArray(command, Consts.figures2D)) {
-                Point point = new Point(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1]));
+        while (!inputData.equals(STRING_FOR_STOP_INPUT)) {
+            String[] coordinates = inputData.split(WHITE_SPACE);
+            if (coordinates.length == Consts.NUMBER_OF_POINTS_TWO &&
+                    inArray(command, Consts.FIGURES_2D)) {
+                Point point = new Point(
+                        Integer.parseInt(coordinates[0]),
+                        Integer.parseInt(coordinates[1]));
                 points.add(point);
-            } else if (coordinates.length == Consts.NUMBER_OF_POINTS_THREE && inArray(command, Consts.figures3D)) {
-                Point point = new Point(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1]), Integer.parseInt(coordinates[Consts.THIRD_POINT]));
+            } else if (coordinates.length == Consts.NUMBER_OF_POINTS_THREE &&
+                    inArray(command, Consts.FIGURES_3D)) {
+                Point point = new Point(
+                        Integer.parseInt(coordinates[0]),
+                        Integer.parseInt(coordinates[1]),
+                        Integer.parseInt(coordinates[Consts.THIRD_POINT]));
                 points.add(point);
             } else {
-                System.out.println("Please, retype");
+                System.out.println(PLEASE_RETYPE);
             }
             inputData = scanner.nextLine();
         }
@@ -43,32 +52,32 @@ public class Main {
     public static Figure getFigure() {
         Scanner scanner = new Scanner(System.in);
         String command = scanner.nextLine();
-        while (!command.equals("END")) {
+        while (!command.equals(STRING_FOR_END)) {
             switch (command) {
-                case "SQUARE":
+                case SQUARE_NAME:
                     return new Square(getPoints(scanner, command));
-                case "RECTANGLE":
+                case RECTANGLE_NAME:
                     return new Rectangle(getPoints(scanner, command));
-                case "PARALLELOGRAM":
+                case PARALLELOGRAM_NAME:
                     return new Parallelogram(getPoints(scanner, command));
-                case "TRIANGLE":
+                case TRIANGLE_NAME:
                     return new Triangle(getPoints(scanner, command));
-                case "CIRCLE":
+                case CIRCLE_NAME:
                     return new Circle(getPoints(scanner, command));
-                case "POLYGON":
+                case POLYGON_NAME:
                     return new Polygon(getPoints(scanner, command));
-                case "CONE":
+                case CONE_NAME:
                     return new Cone(getPoints(scanner, command));
-                case "CYLINDER":
+                case CYLINDER_NAME:
                     return new Cylinder(getPoints(scanner, command));
-                case "SPHERE":
+                case SPHERE_NAME:
                     return new Sphere(getPoints(scanner, command));
-                case "TRUNCATED_SPHERE":
+                case TRUNCATED_SPHERE_NAME:
                     return new TruncatedSphere(getPoints(scanner, command));
-                case "FIGURE":
+                case FIGURE_NAME:
                     return new Figure(getPoints(scanner, command));
                 default:
-                    System.out.println("Please, retype");
+                    System.out.println(PLEASE_RETYPE);
                     break;
             }
             command = scanner.nextLine();
@@ -81,14 +90,14 @@ public class Main {
         while (figure != null) {
             if (figure.validate()) {
                 if (figure.getArea() == 0) {
-                    System.out.println("The figure has no area");
+                    System.out.println(HAS_NO_AREA);
                 } else {
-                    System.out.printf("%.2f\n", figure.getArea());
+                    System.out.printf(FORMAT_FOR_OUTPUT, figure.getArea());
                 }
                 if (figure.getPerimeter() == 0) {
-                    System.out.println("The figure has no perimeter");
+                    System.out.println(HAS_NO_PERIMETER);
                 } else {
-                    System.out.printf("%.2f\n", figure.getPerimeter());
+                    System.out.printf(FORMAT_FOR_OUTPUT, figure.getPerimeter());
                 }
             }
             figure = getFigure();

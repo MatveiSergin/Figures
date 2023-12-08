@@ -6,6 +6,9 @@ import main.java.com.github.matveisergin.figures.Point;
 
 import java.util.List;
 
+import static main.java.com.github.matveisergin.figures.constants.Consts.FIGURE_IS_INVALID;
+import static main.java.com.github.matveisergin.figures.constants.Consts.FIGURE_IS_VALID;
+
 public class TruncatedSphere extends Figure {
     private final int x1 = points.get(0).getX();
     private final int y1 = points.get(0).getY();
@@ -23,16 +26,20 @@ public class TruncatedSphere extends Figure {
 
     @Override
     public boolean validate() {
-        if (points.size() == Consts.NUMBER_OF_POINTS_THREE) {
-            boolean firstCheck = !(x1 == x2 && y1 == y2 && z1 == z2);
-            boolean secondCheck = !(x1 == x3 && y1 == y3 && z1 == z3);
-            double secondRadious = Math.sqrt(Math.pow(x3 - x1, Consts.DEGREE_OF_NUMBER) + Math.pow(y3 - y1, Consts.DEGREE_OF_NUMBER) + Math.pow(z3 - z1, Consts.DEGREE_OF_NUMBER));
-            if (firstCheck && secondCheck && secondRadious == getRadius()) {
-                System.out.println("The figure is valid");
-                return true;
-            }
+        if (points.size() != Consts.NUMBER_OF_POINTS_THREE) {
+            System.out.println(FIGURE_IS_INVALID);
+            return false;
         }
-        System.out.println("The figure is invalid");
+        boolean firstCheck = !(x1 == x2 && y1 == y2 && z1 == z2);
+        boolean secondCheck = !(x1 == x3 && y1 == y3 && z1 == z3);
+        double secondRadious = Math.sqrt(Math.pow(x3 - x1, Consts.DEGREE_OF_NUMBER) +
+                Math.pow(y3 - y1, Consts.DEGREE_OF_NUMBER) + Math.pow(z3 - z1, Consts.DEGREE_OF_NUMBER));
+
+        if (firstCheck && secondCheck && secondRadious == getRadius()) {
+            System.out.println(FIGURE_IS_VALID);
+            return true;
+        }
+        System.out.println(FIGURE_IS_INVALID);
         return false;
     }
 
@@ -43,7 +50,7 @@ public class TruncatedSphere extends Figure {
         return Consts.NUMBER_FOR_FORMULA * Math.PI * radius * height;
     }
 
-    public double getRadius() {
+    private double getRadius() {
         return Math.sqrt(Math.pow(x2 - x1, Consts.DEGREE_OF_NUMBER) + Math.pow(y2 - y1, Consts.DEGREE_OF_NUMBER) + Math.pow(z2 - z1, Consts.DEGREE_OF_NUMBER));
     }
 }

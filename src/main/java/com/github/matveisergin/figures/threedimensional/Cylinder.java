@@ -6,6 +6,9 @@ import main.java.com.github.matveisergin.figures.Point;
 
 import java.util.List;
 
+import static main.java.com.github.matveisergin.figures.constants.Consts.FIGURE_IS_INVALID;
+import static main.java.com.github.matveisergin.figures.constants.Consts.FIGURE_IS_VALID;
+
 public class Cylinder extends Figure {
     private final int x1 = points.get(0).getX();
     private final int y1 = points.get(0).getY();
@@ -23,16 +26,20 @@ public class Cylinder extends Figure {
 
     @Override
     public boolean validate() {
-        if (points.size() == Consts.NUMBER_OF_POINTS_THREE) {
-            boolean firstCheck = !(x1 == x2 && y1 == y2 && z1 == z2);
-            boolean secondCheck = !(x1 == x3 && y1 == y3 && z1 == z3);
-            boolean thirdCheck = z2 == z3 || z1 == z3;
-            if (firstCheck && secondCheck && thirdCheck) {
-                System.out.println("The figure is valid");
-                return true;
-            }
+        if (points.size() != Consts.NUMBER_OF_POINTS_THREE) {
+            System.out.println(FIGURE_IS_INVALID);
+            return false;
         }
-        System.out.println("The figure is invalid");
+        boolean firstCheck = !(x1 == x2 && y1 == y2 && z1 == z2);
+        boolean secondCheck = !(x1 == x3 && y1 == y3 && z1 == z3);
+        boolean thirdCheck = !(x2 == x3 && y2 == y3 && z2 == z3);
+        boolean fourthCheck = z2 == z3 || z1 == z3;
+
+        if (firstCheck && secondCheck && thirdCheck && fourthCheck) {
+            System.out.println(FIGURE_IS_VALID);
+            return true;
+        }
+        System.out.println(FIGURE_IS_INVALID);
         return false;
     }
 

@@ -40,7 +40,6 @@ public class ParallelogramTest {
         double secondArea = secondParallelogram.getArea();
         Assertions.assertEquals(EXPECTED_AREA_SECOND_PARALLELOGRAM, secondArea);
     }
-
     @Test
     void getPerimeter() {
         Assertions.assertTrue(firstParallelogram.validate());

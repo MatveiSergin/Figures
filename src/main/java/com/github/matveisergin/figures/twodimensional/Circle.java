@@ -27,11 +27,11 @@ public class Circle extends Figure {
         if (points.size() == NUMBER_OF_POINTS_TWO) {
 
             if (!(x1 == x2 && y1 == y2)) {
-                System.out.println("The figure is valid");
+                System.out.println(FIGURE_IS_VALID);
                 return true;
             }
         }
-        System.out.println("The figure is invalid");
+        System.out.println(FIGURE_IS_INVALID);
         return false;
     }
 

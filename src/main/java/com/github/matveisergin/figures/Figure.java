@@ -2,6 +2,8 @@ package main.java.com.github.matveisergin.figures;
 
 import java.util.List;
 
+import static main.java.com.github.matveisergin.figures.constants.Consts.VALID_FOR_FIGURE;
+
 public class Figure {
     public List<Point> points;
 
@@ -10,10 +12,9 @@ public class Figure {
     }
 
     public boolean validate() {
-        System.out.println("The figure is figure");
+        System.out.println(VALID_FOR_FIGURE);
         return true;
     }
-
     public double getArea() {
         return 0;
     }

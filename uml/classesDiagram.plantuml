@@ -1,0 +1,114 @@
+@startuml
+
+
+
+class Circle {
+  + Circle(List<Point>): 
+  + validate(): boolean
+  - getRadius(): double
+  + getPerimeter(): double
+  + getArea(): double
+}
+class Cone {
+  + Cone(List<Point>): 
+  + validate(): boolean
+  + getArea(): double
+}
+interface Consts
+class Cylinder {
+  + Cylinder(List<Point>): 
+  + getArea(): double
+  + validate(): boolean
+}
+class Figure {
+  + Figure(List<Point>): 
+  + getArea(): double
+  + validate(): boolean
+  + getPerimeter(): double
+}
+class Main {
+  + Main(): 
+  + inArray(String, String[]): Boolean
+  + getPoints(Scanner, String): List<Point>
+  + main(String[]): void
+  + getFigure(): Figure?
+}
+class MethodsForPoligons {
+  + MethodsForPoligons(): 
+  + getArea(List<Point>): double
+  + getPerimeter(List<Point>): double
+  + isParallelogram(List<Point>): boolean
+}
+class Parallelogram {
+  + Parallelogram(List<Point>): 
+  + validate(): boolean
+  + getArea(): double
+  + getPerimeter(): double
+}
+class Point {
+  + Point(int, int): 
+  + Point(int, int, int): 
+  + getY(): int
+  + getX(): int
+  + getZ(): int
+}
+class Polygon {
+  + Polygon(List<Point>): 
+  + validate(): boolean
+  + getArea(): double
+  + getPerimeter(): double
+}
+class Rectangle {
+  + Rectangle(List<Point>): 
+  + getArea(): double
+  + getPerimeter(): double
+  + validate(): boolean
+}
+class Sphere {
+  + Sphere(List<Point>): 
+  + getArea(): double
+  + validate(): boolean
+}
+class Square {
+  + Square(List<Point>): 
+  + getPerimeter(): double
+  + validate(): boolean
+  + getArea(): double
+}
+class Triangle {
+  + Triangle(List<Point>): 
+  + validate(): boolean
+  + getArea(): double
+  + getPerimeter(): double
+}
+class TruncatedSphere {
+  + TruncatedSphere(List<Point>): 
+  + getArea(): double
+  - getRadius(): double
+  + validate(): boolean
+}
+
+Circle              -[#000082,plain]-^  Figure             
+Cone                -[#000082,plain]-^  Figure             
+Cylinder            -[#000082,plain]-^  Figure             
+Figure             "1" *-[#595959,plain]->  Point
+Main                -[#595959,dashed]->  Circle
+Main                -[#595959,dashed]->  Cone
+Main                -[#595959,dashed]->  Cylinder
+Main                -[#595959,dashed]->  Figure
+Main                -[#595959,dashed]->  Parallelogram
+Main                -[#595959,dashed]->  Point
+Main                -[#595959,dashed]->  Polygon
+Main                -[#595959,dashed]->  Rectangle
+Main                -[#595959,dashed]->  Sphere
+Main                -[#595959,dashed]->  Square
+Main                -[#595959,dashed]->  Triangle
+Main                -[#595959,dashed]->  TruncatedSphere
+Parallelogram       -[#000082,plain]-^  Figure             
+Polygon             -[#000082,plain]-^  Figure             
+Rectangle           -[#000082,plain]-^  Figure             
+Sphere              -[#000082,plain]-^  Figure             
+Square              -[#000082,plain]-^  Figure             
+Triangle            -[#000082,plain]-^  Figure             
+TruncatedSphere     -[#000082,plain]-^  Figure             
+@enduml
